@@ -1,15 +1,19 @@
 <mat-form-field class="example-chip-list" appearance="fill">
   <mat-label>Favorite Fruits</mat-label>
-  <mat-chip-list #chipList 
-  aria-label="Fruit selection"
-  cdkDropList 
-  cdkDropListOrientation="horizontal"
-  (cdkDropListDropped)="drop($event)"
+  <mat-chip-list
+    #chipList
+    aria-label="Fruit selection"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="drop($event)"
   >
-    <mat-chip
-      cdkDrag
-      *ngFor="let fruit of fruits"
-      (removed)="remove(fruit)">
+    <mat-chip cdkDrag *ngFor="let fruit of fruits" (removed)="remove(fruit)">
+      <mat-chip-avatar>
+        <img
+          src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+          alt="Photo of a Shiba Inu"
+        />
+      </mat-chip-avatar>
       {{fruit}}
       <button matChipRemove>
         <mat-icon>cancel</mat-icon>
@@ -23,7 +27,8 @@
       [matChipInputFor]="chipList"
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       (matChipInputTokenEnd)="add($event)"
-      (blur)="clearInput()">
+      (blur)="clearInput()"
+    />
   </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
     <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
@@ -31,7 +36,6 @@
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>
-
 
 <!-- Copyright 2022 Google LLC. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that
